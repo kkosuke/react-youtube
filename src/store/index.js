@@ -4,6 +4,7 @@ const initialState = {
   popular:[],
   selected: {},
   related:[],
+  term: '',
 }
 
 const reducer = (state, action) => {
@@ -23,6 +24,11 @@ const reducer = (state, action) => {
         ...state,
         related: action.payload.related
       }
+      case "SET_TERM":
+        return {
+          ...state,
+          term: action.payload.term
+        };
     default:
       return state;
   }
