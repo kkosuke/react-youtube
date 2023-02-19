@@ -1,19 +1,18 @@
 import React from 'react'
-import Style from "./VideoGridItem.module.scss"
 import { Link } from 'react-router-dom'
+import Style from "./SideListItem.module.scss"
 
-const VideoGridItem = ({id, src, title}) => {
+const SideListItem = ({id,src,title}) => {
   return (
     <Link to={{
       pathname: '/watch',
       search: `?v=${id}`
     }} className={Style.item}>
-      <div>
-        <img src={src} alt={title} />
+      <img src={src} alt={title} /><div className={Style.info}>
         <span>{title}</span>
       </div>
     </Link>
   )
 }
 
-export default VideoGridItem
+export default SideListItem
