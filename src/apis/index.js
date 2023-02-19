@@ -11,7 +11,7 @@ export const fetchPopularData = async () =>{
     // https://developers.google.com/youtube/v3/docs?hl=ja
     params: {
       part: 'snippet',
-      maxResult: 40,
+      maxResults: 40,
       key: KEY,
       regionCode: 'JP',
       type: 'video',
