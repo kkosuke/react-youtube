@@ -3,6 +3,9 @@ import React, { useContext, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { fetchSelectedData } from '../../apis/index';
 import { Store } from '../../store';
+import VideoPlay from '../VideoPlay/VideoPlay';
+import Linkify from 'react-linkify'
+import Style from "./VideoDetail.module.scss"
 
 const VideoDetail = () => {
   const {globalState, setGlobalState} = useContext(Store);
@@ -18,17 +21,24 @@ const VideoDetail = () => {
           selected: item
         }
       });
-      console.log(id);
-      console.log(res);
-    })
-
+      console.log(item);
+    });
   }
+
   useEffect(()=>{
     setSelectedVideo();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-  return (
-    <div>VideoDetail</div>
+  return ( globalState.selected && globalState.selected.id ? (
+    <div className={Style.wrap}>
+      <VideoPlay id={globalState.selected.id} />
+      <p>{globalState.selected.snippet.title}</p>
+      <hr />
+      <Linkify>
+        <pre>{globalState.selected.snippet.description}</pre>
+      </Linkify>
+    </div>
+    ): (<span>no data</span>)
   )
 }
 

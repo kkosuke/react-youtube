@@ -5,7 +5,6 @@ import VideoDetail from '../components/VideoDetail/VideoDetail'
 const Watch = () => {
   return (
     <Layout>
-      <div>Watch</div>
       <VideoDetail />
     </Layout>
   )
