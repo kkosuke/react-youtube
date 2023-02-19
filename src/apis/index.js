@@ -1,20 +1,21 @@
 import axios from "axios";
 
-// 変数名は「REACT_APP_〜」の形にしないと上手くいきません。
 const KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+// https://developers.google.com/youtube/v3/docs?hl=ja
 const youtube = axios.create({
   baseURL: 'https://www.googleapis.com/youtube/v3'
 });
+
 const params = {
   part: 'snippet',
-  maxResults: 40,
+  maxResults: 10,
   key: KEY,
   regionCode: 'JP',
   type: 'video',
 }
 export const fetchPopularData = async () =>{
   return await youtube.get('/videos',{
-    // https://developers.google.com/youtube/v3/docs?hl=ja
+
     params: {
       ...params,
       chart: 'mostPopular'
@@ -36,6 +37,15 @@ export const fetchRelatedData = async (id) =>{
     params: {
       ...params,
       relatedToVideoId: id
+    }
+  })
+}
+
+export const fetchSearchData = async (query) => {
+  return await youtube.get('/search', {
+    params: {
+      ...params,
+      q: query
     }
   })
 }
